@@ -29,6 +29,7 @@ Personalized, Clay-branded landing pages for prospects who requested a Clay.com 
 - Not started: Loom, Webflow, Airtable.
 - `landing-page-prospects.csv` has a `landing_page` column; fill it in as each page goes live.
 - GitHub (2026-09-30): the whole folder is in the public repo https://github.com/AshwinSadan2/clay-landing-pages (`main`, `gh` logged in as `AshwinSadan2`). `.gitignore` leaves out `clay assets.zip` (over GitHub's 100 MB limit; the unzipped folder is committed), `.DS_Store` and `.vercel/`. Commits use the GitHub no-reply email set in the repo's git config. Commit and push after changes when the user asks.
+- Vercel ↔ GitHub (2026-09-30): `vercel-retool` and `vercel-linear` are Git-connected to this repo, with root directories `landing-pages/vercel-retool` and `landing-pages/vercel-linear` (framework "other"). A push to `main` deploys to production (public); other branches get preview URLs. Each project skips the build unless its own folder changed (`git diff --quiet HEAD^ HEAD -- .`). Deploy by editing the page, copying it into the project's folder, then commit and push; don't use `vercel deploy` from the folder any more (the root-directory setting is relative to the repo). New prospect projects: create the folder, `vercel link`, set the root directory and ignore command, then `vercel git connect`.
 
 ## v2 page structure (reuse for the other prospects unless v3 is chosen)
 1. Sticky nav: Clay logo × prospect mark, "Prepared for …", CTA.
