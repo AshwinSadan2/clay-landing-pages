@@ -27,6 +27,8 @@ Personalized, Clay-branded landing pages for prospects who requested a Clay.com 
 - `landing-pages/assets/` — renamed copies used by the pages: `clay-logo-black.png`, `clay-logo-white.png`, `roobert-vf.ttf`, `footer-still.avif`, and `data` / `agents` / `orch` / `execution` / `reps.webm`. Keep this folder alongside the HTML files.
 - `landing-pages/linear-marcus-chen.html` — Linear page (2026-09-29), built from v3. Public at https://vercel-linear-blush.vercel.app (Vercel project `vercel-linear`, deploy folder `landing-pages/vercel-linear/`). Angle: 40,000+ paying companies and 177% NRR, so find which self-serve workspaces belong to large companies; objection block is "Will this feel like a growth hack?" (Linear says it grew without A/B tests, SEO or growth hacks). Linear colors from linear.app live CSS: `#08090a` / `#f7f8f8` / `#7170ff`, muted `#8a8f98`, line `#37393a`. Facts from Linear's own posts (Series C June 2025; "Sharing growth" Aug 26 2026) and careers page. Table hides the CRM column below 1180px and engineers below 1000px because its cells are longer than Retool's.
 - Not started: Loom, Webflow, Airtable.
+- `landing-page-prospects.csv` has a `landing_page` column; fill it in as each page goes live.
+- GitHub (2026-09-30): the whole folder is in the public repo https://github.com/AshwinSadan2/clay-landing-pages (`main`, `gh` logged in as `AshwinSadan2`). `.gitignore` leaves out `clay assets.zip` (over GitHub's 100 MB limit; the unzipped folder is committed), `.DS_Store` and `.vercel/`. Commits use the GitHub no-reply email set in the repo's git config. Commit and push after changes when the user asks.
 
 ## v2 page structure (reuse for the other prospects unless v3 is chosen)
 1. Sticky nav: Clay logo × prospect mark, "Prepared for …", CTA.
