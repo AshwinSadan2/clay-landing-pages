@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clay for Retool</title>
+<meta name="description" content="A personalized look at how Clay can help Retool's revenue team, prepared for Sarah Mitchell.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF8F3;
+    --surface: #FFFFFF;
+    --ink: #16130F;
+    --muted: #6B645B;
+    --line: #E8E1D6;
+    --accent: #5B3DF5;
+    --accent-soft: #EEEAFE;
+    --pink: #FF7AB6;
+    --yellow: #FFD23F;
+    --green: #2FBF71;
+    --blue: #3DA5F5;
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+  /* Nav */
+  nav { padding: 20px 0; }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .lockup { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; }
+  .clay-mark { display: inline-flex; align-items: center; gap: 8px; }
+  .clay-dot { width: 22px; height: 22px; border-radius: 7px; background: conic-gradient(from 45deg, var(--pink), var(--yellow), var(--green), var(--blue), var(--accent), var(--pink)); }
+  .times { color: var(--muted); font-weight: 400; font-size: 18px; }
+  .prospect-logo { height: 26px; width: 26px; border-radius: 6px; object-fit: contain; }
+  .prospect-name { display: inline-flex; align-items: center; gap: 8px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--ink); color: #fff; text-decoration: none;
+    padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 15px;
+    transition: transform .15s ease, background .15s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-1px); background: #000; }
+  .btn.accent { background: var(--accent); }
+  .btn.accent:hover { background: #4A2EE0; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  @media (max-width: 600px) { nav .btn { display: none; } }
+
+  /* Hero */
+  .hero { padding: 56px 0 72px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--muted);
+  }
+  .eyebrow b { color: var(--ink); font-weight: 600; }
+  h1 {
+    font-size: clamp(38px, 6vw, 68px); line-height: 1.02; letter-spacing: -0.045em;
+    margin: 24px 0 20px; font-weight: 800; max-width: 900px;
+  }
+  h1 .hl { background: linear-gradient(transparent 62%, var(--yellow) 62%, var(--yellow) 92%, transparent 92%); }
+  .lede { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 700px; margin: 0 0 32px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .cta-note { font-size: 14px; color: var(--muted); }
+
+  /* Sections */
+  section { padding: 72px 0; }
+  .section-kicker { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 0 0 12px; }
+  h2 { font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.035em; line-height: 1.1; margin: 0 0 16px; font-weight: 800; max-width: 760px; }
+  .section-intro { color: var(--muted); font-size: 18px; max-width: 680px; margin: 0 0 40px; }
+
+  .grid { display: grid; gap: 16px; }
+  .g2 { grid-template-columns: repeat(2, 1fr); }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 900px) { .g3, .g4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .g2, .g3, .g4 { grid-template-columns: 1fr; } }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .card h3 { font-size: 18px; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .signal-stat { font-size: 32px; font-weight: 800; letter-spacing: -0.04em; margin: 0 0 4px; }
+  .source { display: block; margin-top: 12px; font-size: 12px; color: var(--muted); }
+  .source a { color: var(--muted); }
+
+  /* Pains */
+  .pain { display: flex; gap: 16px; align-items: flex-start; }
+  .pain-num {
+    flex: none; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
+    font-weight: 700; font-size: 15px; background: var(--accent-soft); color: var(--accent);
+  }
+  .quote { font-style: italic; color: var(--ink) !important; margin-bottom: 8px !important; }
+
+  /* Plays */
+  .play { position: relative; overflow: hidden; }
+  .play .tag {
+    display: inline-block; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .t1 { background: #FFE8F2; color: #B8266B; }
+  .t2 { background: #FFF6D6; color: #8A6A00; }
+  .t3 { background: #E3F7EC; color: #1C7A47; }
+  .t4 { background: #E3F1FE; color: #1B67A8; }
+  .play ul { margin: 14px 0 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+  .play li { margin-bottom: 6px; }
+
+  /* Table mock */
+  .table-shell { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 32px; }
+  .table-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 600; flex-wrap: wrap; }
+  .table-top span { color: var(--muted); font-weight: 400; font-size: 13px; }
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 14px; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { font-size: 12px; font-weight: 600; color: var(--muted); background: #FCFAF7; }
+  th .col-ico { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .pill.hot { background: #FFE8F2; color: #B8266B; }
+  .pill.warm { background: #FFF6D6; color: #8A6A00; }
+  .pill.cold { background: #EDEBE7; color: #6B645B; }
+  .table-foot { padding: 10px 18px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); background: #FCFAF7; }
+
+  /* Objection */
+  .dark { background: var(--ink); color: #F5F1EA; border-radius: 28px; padding: 56px; }
+  .dark h2 { color: #fff; }
+  .dark p { color: #BDB5A9; font-size: 17px; }
+  .dark .section-kicker { color: var(--yellow); }
+  .dark .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; }
+  .dark .cols h3 { color: #fff; font-size: 17px; margin: 0 0 6px; }
+  .dark .cols p { font-size: 15px; margin: 0; }
+  @media (max-width: 700px) { .dark { padding: 32px 20px; border-radius: 20px; } .dark .cols { grid-template-columns: 1fr; } }
+
+  /* Stats */
+  .stat { font-size: clamp(36px, 5vw, 52px); font-weight: 800; letter-spacing: -0.05em; line-height: 1; margin-bottom: 8px; }
+  .logos { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 40px; align-items: center; color: var(--muted); font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }
+  .logos .label { font-weight: 500; font-size: 14px; letter-spacing: 0; width: 100%; }
+
+  /* Agenda */
+  .agenda { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .agenda li { counter-increment: step; display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 20px 0; border-top: 1px solid var(--line); }
+  .agenda li:last-child { border-bottom: 1px solid var(--line); }
+  .agenda .time { font-weight: 700; color: var(--accent); font-size: 14px; padding-top: 2px; }
+  .agenda h3 { margin: 0 0 4px; font-size: 17px; letter-spacing: -0.02em; }
+  .agenda p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* Final CTA */
+  .final { background: var(--accent); color: #fff; border-radius: 28px; padding: 56px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+  .final h2 { color: #fff; }
+  .final p { color: #DAD3FF; font-size: 17px; margin: 0 0 24px; }
+  .final .btn { background: #fff; color: var(--ink); }
+  .ae { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 20px; padding: 24px; }
+  .ae-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--yellow); color: var(--ink); display: grid; place-items: center; font-weight: 800; font-size: 20px; }
+  .ae-name { font-weight: 700; font-size: 18px; }
+  .ae-role { color: #DAD3FF; font-size: 14px; }
+  .ae p { font-size: 15px; margin: 0; color: #EDE9FF; }
+  @media (max-width: 800px) { .final { grid-template-columns: 1fr; padding: 32px 20px; border-radius: 20px; } }
+
+  footer { padding: 40px 0 56px; color: var(--muted); font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="lockup">
+      <span class="clay-mark"><span class="clay-dot" aria-hidden="true"></span>clay</span>
+      <span class="times">×</span>
+      <span class="prospect-name">
+        <img class="prospect-logo" alt="" src="https://www.google.com/s2/favicons?domain=retool.com&sz=128" onerror="this.remove()">
+        Retool
+      </span>
+    </div>
+    <a class="btn" href="{{CALENDAR_LINK}}" target="_blank" rel="noopener">Book your demo</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Prepared for <b>Sarah Mitchell</b> · VP of Revenue Operations, Retool</span>
+    <h1>Sarah, let's turn Retool's <span class="hl">10,000+ builder orgs</span> into enterprise pipeline.</h1>
+    <p class="lede">
+      Retool has grown its bottom-up developer adoption into a $120M ARR business and is now moving upmarket.
+      RevOps sits between those two motions. Clay gives you one place to enrich every signup, account and buyer,
+      score them, and send the right ones to the right rep without hiring more people.
+    </p>
+    <div class="cta-row">
+      <a class="btn accent" href="{{CALENDAR_LINK}}" target="_blank" rel="noopener">Book your Clay demo →</a>
+      <a class="btn ghost" href="#plays">See the Retool plays</a>
+    </div>
+  </div>
+</header>
+
+<section style="padding-top:24px">
+  <div class="wrap">
+    <p class="section-kicker">What we noticed about Retool</p>
+    <h2>You're scaling two go-to-market motions at once.</h2>
+    <p class="section-intro">We looked at Retool's public signals before putting this page together. Here's what stood out, and why it matters for RevOps.</p>
+    <div class="grid g4">
+      <div class="card">
+        <div class="signal-stat">$120M</div>
+        <h3>ARR, up ~34% in a year</h3>
+        <p>From $90M at the end of 2024 to $120M by October 2025. Pipeline targets grow with it.</p>
+        <span class="source">Source: <a href="https://sacra.com/c/retool/" target="_blank" rel="noopener">Sacra</a></span>
+      </div>
+      <div class="card">
+        <div class="signal-stat">10k+</div>
+        <h3>Orgs building on Retool</h3>
+        <p>Developers adopt Retool bottom-up, and enterprise deals follow. Most of the buying signal starts in self-serve.</p>
+        <span class="source">Source: <a href="https://retool.com" target="_blank" rel="noopener">retool.com</a></span>
+      </div>
+      <div class="card">
+        <div class="signal-stat">Upmarket</div>
+        <h3>Sales development is growing</h3>
+        <p>Retool is hiring BDRs and a leader to build a global sales development function aimed at enterprise deals.</p>
+        <span class="source">Source: <a href="https://retool.com/careers" target="_blank" rel="noopener">Retool careers</a></span>
+      </div>
+      <div class="card">
+        <div class="signal-stat">AI</div>
+        <h3>New products, new buyers</h3>
+        <p>AppGen and Agents (2025) sell to people beyond internal-tools engineering teams, so there are new personas to find and map.</p>
+        <span class="source">Source: <a href="https://retool.com/agents" target="_blank" rel="noopener">retool.com/agents</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="section-kicker">Where RevOps usually feels it</p>
+    <h2>The questions a hybrid PLG + enterprise team keeps running into.</h2>
+    <p class="section-intro">Other RevOps leaders at companies like Retool bring these to us most often. You can tell me on the demo which ones apply to you.</p>
+    <div class="grid g2">
+      <div class="card pain">
+        <div class="pain-num">1</div>
+        <div>
+          <p class="quote">"Which of our self-serve workspaces are actually inside a Fortune 500?"</p>
+          <p>A signup from a Gmail address or a small subsidiary doesn't show the enterprise account behind it, so good leads go unworked.</p>
+        </div>
+      </div>
+      <div class="card pain">
+        <div class="pain-num">2</div>
+        <div>
+          <p class="quote">"Our enrichment only fills in 40–60% of records."</p>
+          <p>Single-provider tools leave gaps, and those gaps are biggest in the global enterprise accounts you're now going after.</p>
+        </div>
+      </div>
+      <div class="card pain">
+        <div class="pain-num">3</div>
+        <div>
+          <p class="quote">"The BDRs spend half their day researching instead of selling."</p>
+          <p>As the sales development team grows, research time grows with it, unless it's automated first.</p>
+        </div>
+      </div>
+      <div class="card pain">
+        <div class="pain-num">4</div>
+        <div>
+          <p class="quote">"We pay for five data tools and nobody trusts the CRM."</p>
+          <p>Overlapping subscriptions and stale fields make it hard to report on pipeline or route leads well.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plays">
+  <div class="wrap">
+    <p class="section-kicker">What Clay would do for Retool</p>
+    <h2>Four plays we'd build with your team.</h2>
+    <p class="section-intro">Each one runs in Clay tables that your ops team owns, with no engineering tickets, and syncs to your CRM and outreach tools.</p>
+    <div class="grid g2">
+      <div class="card play">
+        <span class="tag t1">PLG → Enterprise</span>
+        <h3>Find the enterprise behind each signup</h3>
+        <p>Enrich every new Retool workspace in real time. Match it to its parent company, headcount and tech stack, then send accounts that fit your enterprise ICP to an AE within minutes.</p>
+        <ul>
+          <li>Resolve personal-email signups to a company and role</li>
+          <li>Group workspaces from the same parent account</li>
+          <li>Score by usage signals plus firmographic fit</li>
+        </ul>
+      </div>
+      <div class="card play">
+        <span class="tag t2">Waterfall enrichment</span>
+        <h3>Fill the gaps in global enterprise coverage</h3>
+        <p>Clay checks 150+ data providers in sequence until it finds the email, phone or firmographic it needs. Customers typically get 2–3x the coverage of a single provider.</p>
+        <ul>
+          <li>Find buying committees across regions</li>
+          <li>Verified emails and direct dials for enterprise contacts</li>
+          <li>Only pay for the providers that return a result</li>
+        </ul>
+      </div>
+      <div class="card play">
+        <span class="tag t3">Claygent research</span>
+        <h3>Give the new sales development team a head start</h3>
+        <p>AI research agents read 10-Ks, job posts and engineering blogs to surface Retool-specific triggers, such as "hiring internal tools engineers" or "announced an AI ops initiative", and write a first line for each.</p>
+        <ul>
+          <li>Account briefs attached to every task in the sequence</li>
+          <li>Personalization at scale without adding headcount</li>
+          <li>Up to 80% less time spent on manual research</li>
+        </ul>
+      </div>
+      <div class="card play">
+        <span class="tag t4">AI product expansion</span>
+        <h3>Map new personas for AppGen and Agents</h3>
+        <p>Find the ops, support and business-systems leaders at your existing customers who would buy Agents. That turns your installed base into expansion pipeline.</p>
+        <ul>
+          <li>Find new stakeholders at current accounts</li>
+          <li>Track job changes of Retool champions into new companies</li>
+          <li>Keep CRM records up to date on a schedule</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="table-shell" aria-label="Illustrative Clay table">
+      <div class="table-top">Retool · New workspace signups → Enterprise routing <span>Example workflow with sample data</span></div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th><span class="col-ico" style="background:var(--ink)"></span>Signup</th>
+              <th><span class="col-ico" style="background:var(--blue)"></span>Resolved company</th>
+              <th><span class="col-ico" style="background:var(--blue)"></span>Employees</th>
+              <th><span class="col-ico" style="background:var(--green)"></span>Parent account in CRM</th>
+              <th><span class="col-ico" style="background:var(--accent)"></span>Claygent: AI / internal tools signal</th>
+              <th><span class="col-ico" style="background:var(--pink)"></span>Route</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>j.park@gmail.com</td>
+              <td>Northwind Logistics</td>
+              <td>12,400</td>
+              <td>Yes · Open opp</td>
+              <td>Hiring 3 "Internal Tools" engineers</td>
+              <td><span class="pill hot">Enterprise AE</span></td>
+            </tr>
+            <tr>
+              <td>ops@brightlane.io</td>
+              <td>Brightlane</td>
+              <td>340</td>
+              <td>No</td>
+              <td>Announced AI support automation program</td>
+              <td><span class="pill warm">Mid-market BDR</span></td>
+            </tr>
+            <tr>
+              <td>dev@kitefin.com</td>
+              <td>Kite Financial (sub. of Meridian Group)</td>
+              <td>8,900</td>
+              <td>Yes · Customer</td>
+              <td>New VP Business Systems (ex-Retool champion)</td>
+              <td><span class="pill hot">Expansion AE</span></td>
+            </tr>
+            <tr>
+              <td>sam@tinystudio.co</td>
+              <td>Tiny Studio</td>
+              <td>6</td>
+              <td>No</td>
+              <td>No signal found</td>
+              <td><span class="pill cold">Nurture</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-foot">Company and contact names are made up. On the demo we'll build this with your real signup data.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="dark">
+      <p class="section-kicker">The obvious question</p>
+      <h2>"We're Retool. Couldn't we just build this ourselves?"</h2>
+      <p>You could, and your team would build it well. But you'd never tell a customer to write their own auth, audit logging and RBAC from scratch. Enrichment data works the same way.</p>
+      <div class="cols">
+        <div>
+          <h3>Clay brings the data layer</h3>
+          <p>150+ providers under contract, waterfall logic, deduplication and AI research. That would take months of vendor negotiation and pipeline work to rebuild, and it has to be maintained after that.</p>
+        </div>
+        <div>
+          <h3>Retool stays where it's strongest</h3>
+          <p>Clay pushes data to your CRM, warehouse or any API. If your team wants a custom internal app for reps on top of Clay data, Retool is the obvious place to build it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="section-kicker">Why revenue teams choose Clay</p>
+    <div class="grid g4">
+      <div class="card"><div class="stat">3x</div><p>enrichment coverage compared with single-provider tools</p></div>
+      <div class="card"><div class="stat">80%</div><p>less time spent on manual prospect research</p></div>
+      <div class="card"><div class="stat">150+</div><p>data providers and AI agents in one platform</p></div>
+      <div class="card"><div class="stat">4.9</div><p>average rating on G2</p></div>
+    </div>
+    <div class="logos">
+      <span class="label">Trusted by 5,000+ companies, including</span>
+      <span>OpenAI</span><span>Anthropic</span><span>Canva</span><span>Ramp</span><span>Rippling</span><span>Vanta</span><span>Intercom</span><span>Notion</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="section-kicker">Your demo, planned around Retool</p>
+    <h2>What we'll cover in 30 minutes.</h2>
+    <p class="section-intro" style="margin-bottom:24px">No generic product tour. We'll spend the time on Retool's own use cases.</p>
+    <ol class="agenda">
+      <li><span class="time">0–5</span><div><h3>Your current stack and where the gaps are</h3><p>CRM, enrichment, routing, and what the new sales development team needs from RevOps.</p></div></li>
+      <li><span class="time">5–15</span><div><h3>Live build: turning signups into enterprise leads</h3><p>We'll enrich a sample of Retool-style signups and route them in real time.</p></div></li>
+      <li><span class="time">15–25</span><div><h3>Waterfall coverage and Claygent research</h3><p>Coverage compared with your current provider, plus AI-written account briefs for BDRs.</p></div></li>
+      <li><span class="time">25–30</span><div><h3>Rollout plan and next steps</h3><p>What a pilot looks like, who needs to be involved, and how we'd measure success.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="book" style="padding-bottom:40px">
+  <div class="wrap">
+    <div class="final">
+      <div>
+        <h2>Sarah, pick a time that works for you.</h2>
+        <p>Choose a 30-minute slot and I'll come prepared with a Clay table built on Retool's own go-to-market data.</p>
+        <a class="btn" href="{{CALENDAR_LINK}}" target="_blank" rel="noopener">Book your Clay demo →</a>
+      </div>
+      <div class="ae">
+        <div class="ae-top">
+          <div class="avatar" aria-hidden="true">AS</div>
+          <div>
+            <div class="ae-name">Ashwin Sadananthan</div>
+            <div class="ae-role">Account Executive, Clay</div>
+          </div>
+        </div>
+        <p>"I've read up on Retool's move upmarket. I'd like to show you how teams with a similar hybrid PLG and enterprise model use Clay to get more pipeline from the users they already have."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Prepared for Sarah Mitchell at Retool by Clay.</span>
+    <span>Retool data is based on public sources as of September 2026.</span>
+  </div>
+</footer>
+
+</body>
+</html>

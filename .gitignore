@@ -1,0 +1,5 @@
+# Over GitHub's 100 MB file limit; the unzipped "clay assets/" folder has the same files
+clay assets.zip
+
+.DS_Store
+.vercel/
